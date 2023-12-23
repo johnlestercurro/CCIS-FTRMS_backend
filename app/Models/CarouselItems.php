@@ -30,7 +30,6 @@ class CarouselItems extends Model
     protected $fillable = 
     [
         'faculty_name',
-        'contact_number',
         'email',
         'date_hired',
         'user_id',

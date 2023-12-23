@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('_faculty', function (Blueprint $table) {
             $table->id('faculty_id');
             $table->string('faculty_name');
-            $table->integer('contact_number');
             $table->string('email');
             $table->date('date_hired');
             $table->timestamps();

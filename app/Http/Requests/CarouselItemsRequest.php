@@ -22,10 +22,11 @@ class CarouselItemsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'faculty_name' => 'string|max:255',
-            'email' => 'string|max:255',
+            'faculty_name' => 'required|string|max:255',
+            'email' => 'required|string|unique|max:255',
             'date_hired' => 'date|max:255',
             'user_id' => 'required|integer',
+            'Password'	=> 'required|min:8|confirmed',
         ];
     }
 }

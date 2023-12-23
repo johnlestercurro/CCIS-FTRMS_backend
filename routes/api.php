@@ -17,10 +17,13 @@ use App\Http\Controllers\Api\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//Public APIs
+    Route::post('login', [AuthController::class, 'login'])->name('user.login');
+    Route::post('user', [UserController::class, 'store'])->name('user.store');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+    //Private APIs
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::controller(CarouselItemsController::class)->group(function (){
 	Route::get('/carousel', 'index');
@@ -36,17 +39,17 @@ Route::controller(CarouselItemsController::class)->group(function (){
 // Route::put('/carousel/{id}',[CarouselItemsController::class, 'update']);
 // Route::delete('/carousel/{id}', [CarouselItemsController::class, 'destroy']);
 
-// Route::get('/user',[UserController::class, 'index']);
-// Route::get('/user/{id}',[UserController::class, 'show']);
-// Route::post('/user',[UserController::class, 'store'])->name('user.store');
-// Route::put('/user/{id}',[UserController::class, 'update'])->name('user.update');
-// Route::put('/user/email/{id}',[UserController::class, 'email'])->name('user.email');
-// Route::put('/user/password/{id}',[UserController::class, 'password'])->name('user.password');
-// Route::DELETE('/user/{id}',[UserController::class, 'destroy']);
+Route::controller(UserController::class)->group(function () {
+Route::get('/user', 'index');
+Route::get('/user/{id}', 'show');
+Route::post('/user','store')->name('user.store');
+Route::put('/user/{id}', 'update')->name('user.update');
+Route::put('/user/email/{id}', 'email')->name('user.email');
+Route::put('/user/password/{id}','password')->name('user.password');
+Route::DELETE('/user/{id}','destroy');
 
-Route::controller(AuthController::class)->group(function (){
-	Route::post('/login', 'login')->name('user.login');
-	Route::post('/logout', 'logout');
 });
+});
+
 
 

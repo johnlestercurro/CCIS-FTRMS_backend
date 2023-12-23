@@ -6,7 +6,6 @@ use App\Models\CarouselItems;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CarouselItemsRequest;
-use Illuminate\Support\Facades\Hash;
 
 class CarouselItemsController extends Controller
 {
